@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlisttask/app/core/app_string.dart';
+import 'package:watchlisttask/app/core/app_style.dart';
 import 'package:watchlisttask/app/modules/watchlist/bloc/watchlist_bloc.dart';
 import 'package:watchlisttask/app/modules/watchlist/bloc/watchlist_event.dart';
 import 'package:watchlisttask/app/modules/watchlist/bloc/watchlist_state.dart';
+import 'package:watchlisttask/app/modules/watchlist/screens/search_screen.dart';
 
 class WatchlistScreen extends StatelessWidget {
   @override
@@ -10,16 +13,15 @@ class WatchlistScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => WatchlistBloc()..add(LoadWatchlist()),
       child: Scaffold(
-        backgroundColor: Colors.black, // Set background to black
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text("Watchlist", style: TextStyle(color: Colors.white)),
-          backgroundColor: Colors.black, // AppBar background color
+          title: Text(AppString.watchlist, style: headLine2),
+          backgroundColor: Colors.black,
           elevation: 0,
-          iconTheme: IconThemeData(color: Colors.white), // Icon color
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: Column(
           children: [
-            // Watchlist Tabs
             BlocBuilder<WatchlistBloc, WatchlistState>(
               builder: (context, state) {
                 return Row(
@@ -42,7 +44,7 @@ class WatchlistScreen extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             color: state.selectedGroupIndex == idx
                                 ? Colors.green
-                                : Colors.white, // Text color to white
+                                : Colors.white,
                           ),
                         ),
                       ),
@@ -54,38 +56,28 @@ class WatchlistScreen extends StatelessWidget {
 
             // Search Bar
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[900], // Dark search bar background
-                  hintText: "Search & Add",
-                  hintStyle:
-                      TextStyle(color: Colors.white54), // Hint text color
-                  prefixIcon: Icon(Icons.search, color: Colors.white),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.white),
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[900],
+                    hintText: AppString.searchadd,
+                    hintStyle: TextStyle(color: Colors.white54),
+                    prefixIcon: Icon(Icons.search, color: Colors.white),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.white54),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.white54),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(color: Colors.white),
-                  ),
-                ),
-                style: TextStyle(color: Colors.white), // Input text color
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => DummySearchScreen()),
-                  );
-                },
-              ),
-            ),
+                  style: headLine2,
+                  readOnly: true,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchScreen()),
+                    );
+                  },
+                )),
 
             // Watchlist Symbols
             Expanded(
@@ -111,23 +103,6 @@ class WatchlistScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class DummySearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black, // Set background to black
-      appBar: AppBar(
-        title: Text("Search Stocks", style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.black,
-        iconTheme: IconThemeData(color: Colors.white),
-      ),
-      body: Center(
-          child: Text("This is a dummy search screen.",
-              style: TextStyle(color: Colors.white))),
     );
   }
 }

@@ -11,7 +11,8 @@ class WatchlistBloc extends Bloc<WatchlistEvent, WatchlistState> {
             {"name": "GOLD 26JUL 59500 CE", "price": 298.50, "change": 23.50},
             {"name": "ACCELYA", "price": 1337.70, "change": 1.05},
             {"name": "ACC", "price": 1795.20, "change": 27.20},
-            {"name": "ACC", "price": 1792.30, "change": 25.40},
+            {"name": "RADINGTON", "price": 792.30, "change": 25.40},
+            {"name": "SILVER", "price": 2637.70, "change": 5.05},
           ],
         )) {
     on<LoadWatchlist>((event, emit) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watchlisttask/app/core/app_string.dart';
 import 'package:watchlisttask/app/modules/widgets/blocs/navigation_bloc.dart';
 import 'package:watchlisttask/app/modules/widgets/blocs/navigation_event.dart';
 import 'package:watchlisttask/app/modules/widgets/blocs/navigation_state.dart';
@@ -11,13 +12,11 @@ class NavigationMenu extends StatelessWidget {
       builder: (context, state) {
         final navigationBloc = BlocProvider.of<NavigationBloc>(context);
 
-        // Ensure the selected index is within the valid range
         int selectedIndex = navigationBloc.screens.indexOf(state.screen);
         if (selectedIndex < 0 ||
             selectedIndex >= navigationBloc.screens.length) {
-          selectedIndex = 0; // Default to first tab
+          selectedIndex = 0;
         }
-
         return Scaffold(
           body: state.screen,
           bottomNavigationBar: NavigationBarTheme(
@@ -36,7 +35,7 @@ class NavigationMenu extends StatelessWidget {
               backgroundColor: const Color.fromARGB(255, 27, 26, 26),
               height: 80,
               elevation: 0,
-              selectedIndex: selectedIndex, // ✅ Ensure valid index
+              selectedIndex: selectedIndex,
               onDestinationSelected: (index) {
                 navigationBloc.add(NavigationItemSelected(index));
               },
@@ -45,27 +44,27 @@ class NavigationMenu extends StatelessWidget {
                 NavigationDestination(
                   icon: Icon(Icons.bookmark_outline,
                       color: selectedIndex == 0 ? Colors.green : Colors.white),
-                  label: 'Watchlist',
+                  label: AppString.watchlist,
                 ),
                 NavigationDestination(
                   icon: Icon(Icons.shopping_bag_outlined,
                       color: selectedIndex == 1 ? Colors.green : Colors.white),
-                  label: 'Orders',
+                  label: AppString.orders,
                 ),
                 NavigationDestination(
                   icon: Icon(Icons.backpack_outlined,
                       color: selectedIndex == 2 ? Colors.green : Colors.white),
-                  label: 'Portfolio',
+                  label: AppString.portfolio,
                 ),
                 NavigationDestination(
                   icon: Icon(Icons.bar_chart_outlined,
                       color: selectedIndex == 3 ? Colors.green : Colors.white),
-                  label: 'Movers',
+                  label: AppString.movers,
                 ),
                 NavigationDestination(
                   icon: Icon(Icons.more_horiz_outlined,
                       color: selectedIndex == 4 ? Colors.green : Colors.white),
-                  label: 'More',
+                  label: AppString.more,
                 ),
               ],
             ),

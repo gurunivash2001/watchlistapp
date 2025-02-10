@@ -1,6 +1,11 @@
 class AppString {
   AppString._();
 
-// LOGIN SCREEN
-  static const userName = "User name";
+  static const stillindevelopment = "Still in Development...";
+  static const watchlist = "Watchlist";
+  static const orders = "Orders";
+  static const portfolio = "Portfolio";
+  static const movers = "Movers";
+  static const more = "More";
+  static const searchadd = "Search & Add";
 }
