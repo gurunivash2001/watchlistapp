@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:watchlisttask/app/core/app_string.dart';
 import 'package:watchlisttask/app/core/app_style.dart';
 import 'package:watchlisttask/app/modules/watchlist/bloc/watchlist_bloc.dart';
@@ -72,10 +73,7 @@ class WatchlistScreen extends StatelessWidget {
                   style: headLine2,
                   readOnly: true,
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SearchScreen()),
-                    );
+                    Get.to(() => SearchScreen());
                   },
                 )),
 
