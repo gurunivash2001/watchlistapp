@@ -12,7 +12,7 @@ class WatchlistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => WatchlistBloc()..add(LoadWatchlist()),
+      create: (context) => WatchlistBloc() ,
       child: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
